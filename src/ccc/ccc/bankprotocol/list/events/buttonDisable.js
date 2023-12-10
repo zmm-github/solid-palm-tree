@@ -1,0 +1,266 @@
+//QCRu/PDcDggPUTbrjwK8iP3vFOxyLtNrXXJbRp6K0s9+Bczqdl+fqoaxvFDR1+7D
+export default function buttonDisable(props, moudleId, values, index, falg) {
+	let scene = props.getUrlParam('scene');
+	let pk_ntbparadimvo = props.getUrlParam('pk_ntbparadimvo');
+	if (scene === 'linksce') return;
+	if (pk_ntbparadimvo) return;
+	let selectedData = props.table.getCheckedRows(moudleId);
+	if (selectedData && selectedData.length == 1) {
+		values = selectedData[0].data.values;
+	}
+	if (selectedData.length == 1) {
+		if (values.protocolstatus) {
+			let billstatus = values.protocolstatus.value;
+			switch (billstatus) {
+				case 'NOCOMMIT': //待提交
+					props.button.setButtonDisabled(
+						[
+							'add',
+							'submit',
+							'delete',
+							'regenerate',
+							'prints',
+							'file',
+							'links',
+							'linkntb',
+							'linkver',
+							'print',
+							'printout',
+							'assist',
+							'copy'
+						],
+						false
+					);
+					props.button.setButtonDisabled(
+						[ 
+							'withdraw', 
+							'linkappr', 
+							'linkversion', 
+							'delversion' 
+						], 
+						true);
+					break;
+				case 'NOAUDIT': //待审批
+					props.button.setButtonDisabled(
+						[
+							'add',
+							'withdraw',
+							'regenerate',
+							'file',
+							'links',
+							'linkntb',
+							'linkappr',
+							'linkver',
+							'print',
+							'printout',
+							'copy'
+						],
+						false
+					);
+					props.button.setButtonDisabled(
+						[ 
+							'assist', 
+							'linkversion', 
+							'submit', 
+							'delete' 
+						], 
+						true
+					);
+					break;
+				case 'NOEXECUTE': //未执行
+					props.button.setButtonDisabled(
+						[ 
+							'add', 
+							'withdraw', 
+							'prints', 
+							'file', 
+							'links', 
+							'linkappr', 
+							'linkver', 
+							'print', 
+							'printout',
+							'assist',
+							'terminate',
+							'copy'
+						],
+						false
+					);
+					props.button.setButtonDisabled(
+						[ 
+							'submit', 
+							'delete', 
+							'change', 
+							'delversion', 
+							'frozen', 
+							'unfrozen', 
+							'unterminate'
+						], 
+						true
+					);
+					break;
+				case 'EXECUTING': //在执行
+					props.button.setButtonDisabled(
+						[
+							'add',
+							'delete',
+							'file',
+							'assist',
+							'links',
+							'terminate',
+							'frozen',
+							'change',
+							'delversion',
+							'linkappr',
+							'linkver',
+							'print',
+							'printout',
+							'copy'
+						],
+						false
+					);
+					props.button.setButtonDisabled(
+						[ 
+							'withdraw', 
+							'submits', 
+							'delete', 
+							'unterminate', 
+							'unfrozen' 
+						],
+						true
+					);
+					break;
+				case 'FINISHED': //已结束
+					props.button.setButtonDisabled(
+						[
+							'add',
+							'delete',
+							'file',
+							'assist',
+							'links',
+							'unterminate',
+							'linkappr',
+							'linkver',
+							'print',
+							'printout',
+							'copy'
+						],
+						false
+					);
+					props.button.setButtonDisabled(
+						[ 
+							'withdraw', 
+							'submits', 
+							'delete', 
+							'frozen', 
+							'terminate', 
+							'change', 
+							'delversion', 
+							'unfrozen' 
+						],
+						true
+					);
+					break;
+				case 'FROZEN': //已冻结
+					props.button.setButtonDisabled(
+						[
+							'add',
+							'delete',
+							'file',
+							'assist',
+							'links',
+							'unfrozen',
+							'linkappr',
+							'linkver',
+							'print',
+							'printout',
+							'copy'
+						],
+						false
+					);
+					props.button.setButtonDisabled(
+						[
+							'withdraw',
+							'submits',
+							'delete',
+							'frozen',
+							'terminate',
+							'unterminate',
+							'change',
+							'delversion'
+						],
+						true
+					);
+					break;
+			}
+		}
+	} else if (selectedData.length > 1) {
+		props.button.setButtonDisabled(
+			[ 
+				'links', 
+				'assist', 
+				'linkappr', 
+				'linkver', 
+				'print', 
+				'printout', 
+				'delete' ,
+				'submit',
+				'withdraw',
+				'copy'
+			],
+			false
+		);
+		props.button.setButtonDisabled(
+			[
+				'submits',
+				'frozen',
+				'unfrozen',
+				'terminate',
+				'unterminate',
+				'change',
+				'delversion',
+				'linkappr',
+				'linkver',
+				'file'
+			],
+			true
+		);
+	} else if (selectedData.length == 0) {
+		props.button.setButtonDisabled(
+			[
+				'submit',
+				'delete',
+				'regenerate',
+				'prints',
+				'file',
+				'linkntb',
+				'linkver',
+				'withdraw',
+				'submits',
+				'submit',
+				'withdraw',
+				'delete',
+				'frozen',
+				'unfrozen',
+				'terminate',
+				'unterminate',
+				'change',
+				'delversion',
+				'linkappr',
+				'print',
+				'printout',
+				'copy'
+			],
+			true
+		);
+		props.button.setButtonDisabled(
+			[ 
+				'add', 
+				'links', 
+				'assist' 
+			], 
+			false
+		);
+	}
+}
+
+//QCRu/PDcDggPUTbrjwK8iP3vFOxyLtNrXXJbRp6K0s9+Bczqdl+fqoaxvFDR1+7D
