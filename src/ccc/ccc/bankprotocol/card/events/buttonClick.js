@@ -193,12 +193,6 @@ export default function (props, id, tableId) {
     case "transmitGMS": //传送GMS
       transmitGMSAction(this, props, ACTION_URL.TRANSMITGMS);
       break;
-    case "ReceiptCheck": // 影像查看
-      receiptCheckOperate.call(this, props);
-      break;
-    case "ReceiptScan": // 影像扫描
-      receiptScanOperate.call(this, props)
-      break;
   }
 }
 
