@@ -1,6 +1,2 @@
 这是我第一次修改test.txt文件
-<<<<<<< HEAD
-完善test
-=======
-这是我第二次修改test
->>>>>>> b93116b8022b20203fbeea2b7ef70ad6d592ab32
+这是我第二次修改test.txt文件
